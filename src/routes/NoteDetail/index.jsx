@@ -18,35 +18,34 @@ const NoteDetail = () => {
 
   return (
     <div className="note-detail">
-      <div className="note-detail_wrapper">
-        {isEditing ? (
-          <form className="note-detail_wrapper">
-            <input
-              type="text"
-              value={title}
-              className="note-detail_title"
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <p className="note-detail_date">
-              {showFormattedDate(note.createdAt)}
-            </p>
-            <textarea
-              className="note-detail_body"
-              rows={10}
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-            />
-          </form>
-        ) : (
-          <>
-            <h2 className="note-detail_title">{title}</h2>
-            <p className="note-detail_date">
-              {showFormattedDate(note.createdAt)}
-            </p>
-            <p className="note-detail_body">{body}</p>
-          </>
-        )}
-      </div>
+      {isEditing ? (
+        <form className="note-detail_wrapper">
+          <input
+            type="text"
+            value={title}
+            className="note-detail_title_edit"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <p className="note-detail_date">
+            {showFormattedDate(note.createdAt)}
+          </p>
+          <textarea
+            className="note-detail_body_edit"
+            rows={10}
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+          />
+        </form>
+      ) : (
+        <div className="note-detail_wrapper">
+          <h2 className="note-detail_title">{title}</h2>
+          <p className="note-detail_date">
+            {showFormattedDate(note.createdAt)}
+          </p>
+          <p className="note-detail_body">{body}</p>
+        </div>
+      )}
+
       <NoteDetailActions
         note={note}
         setIsEditing={setIsEditing}
