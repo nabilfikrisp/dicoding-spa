@@ -1,0 +1,7 @@
+.nd-actions {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}

@@ -1,0 +1,41 @@
+.my-btn {
+  padding: 0 20px;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  transition: all 0.3 ease-in-out;
+  cursor: pointer;
+  border: none;
+}
+
+.my-btn:hover {
+  opacity: 0.7;
+  transition: all 0.3 ease-in-out;
+}
+
+.my-btn:active {
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+  transition: all 0.3 ease-in-out;
+}
+
+.my-btn_action {
+  background-color: white;
+}
+
+.my-btn_danger {
+  background-color: #cf6679;
+  color: white;
+}
+
+.my-btn_warning {
+  background-color: #ffd700;
+  color: white;
+}
+
+.my-btn_success {
+  background-color: #03dac6;
+}

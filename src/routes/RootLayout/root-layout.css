@@ -1,0 +1,15 @@
+.root-layout {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.root-outlet {
+  flex-grow: 1;
+  margin-top: 50px;
+  @media (max-width: 576px) {
+    margin-top: 100px;
+  }
+}
