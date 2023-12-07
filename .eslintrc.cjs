@@ -25,5 +25,6 @@ module.exports = {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "no-var": "error",
+    "react-refresh/only-export-components": "off",
   },
 };

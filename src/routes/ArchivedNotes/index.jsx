@@ -1,5 +1,5 @@
 import React from "react";
-import "./archived-notes.css";
+import styles from "./archived-notes.module.css";
 import NoteList from "../../components/NoteList";
 import { getArchivedNotes } from "../../utils/local-data";
 import { Link, useSearchParams } from "react-router-dom";
@@ -14,13 +14,13 @@ const ArchivedNotes = () => {
       )
     : archivedNotes;
   return (
-    <div className="notes-page">
-      <h1 className="notes-page_title">Archived Note</h1>
-      <div className="notes-page_wrapper">
+    <div className={styles.notesPage}>
+      <h1 className={styles.title}>Archived Note</h1>
+      <div className={styles.wrapper}>
         <SearchBar />
         <NoteList notes={showedNotes} />
       </div>
-      <Link className="new-note_btn" to="/note/new">
+      <Link className={styles.newNoteBtn} to="/note/new">
         +
       </Link>
     </div>

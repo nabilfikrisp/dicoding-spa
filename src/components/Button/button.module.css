@@ -1,4 +1,4 @@
-.my-btn {
+.myBtn {
   padding: 0 20px;
   border-radius: 10px;
   height: 50px;
@@ -9,33 +9,33 @@
   transition: all 0.3 ease-in-out;
   cursor: pointer;
   border: none;
+
+  &:hover {
+    opacity: 0.7;
+    transition: all 0.3 ease-in-out;
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    transition: all 0.3 ease-in-out;
+  }
 }
 
-.my-btn:hover {
-  opacity: 0.7;
-  transition: all 0.3 ease-in-out;
-}
-
-.my-btn:active {
-  transform: scale(0.98);
-  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
-  transition: all 0.3 ease-in-out;
-}
-
-.my-btn_action {
+.myBtnAction {
   background-color: white;
 }
 
-.my-btn_danger {
+.myBtnDanger {
   background-color: #cf6679;
   color: white;
 }
 
-.my-btn_warning {
+.myBtnWarning {
   background-color: #ffd700;
   color: white;
 }
 
-.my-btn_success {
+.myBtnSuccess {
   background-color: #03dac6;
 }

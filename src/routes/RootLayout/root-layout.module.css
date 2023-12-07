@@ -1,4 +1,4 @@
-.root-layout {
+.rootLayout {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.root-outlet {
+.rootOutlet {
   flex-grow: 1;
   margin-top: 50px;
   @media (max-width: 576px) {

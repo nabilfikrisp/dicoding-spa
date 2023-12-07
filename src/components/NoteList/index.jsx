@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./note-list.css";
+import styles from "./note-list.module.css";
 import Note from "../Note/inde";
 
 const NoteList = ({ notes }) => {
   return (
-    <div className="note-list-container">
+    <div className={styles.container}>
       {notes.length > 0 ? (
         notes.map((note) => <Note note={note} key={note.id} />)
       ) : (
-        <p className="note-list_empty">You have no note with this type</p>
+        <p className={styles.empty}>You have no note with this type</p>
       )}
     </div>
   );

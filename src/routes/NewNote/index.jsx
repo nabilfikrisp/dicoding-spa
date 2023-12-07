@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./new-note.css";
+import styles from "./new-note.module.css";
 import Button from "../../components/Button";
 import { addNote } from "../../utils/local-data";
 import { useNavigate } from "react-router-dom";
@@ -18,18 +18,18 @@ const NoteDetail = () => {
   };
 
   return (
-    <div className="note-detail">
-      <form className="note-detail_wrapper" onSubmit={handleSubmit}>
+    <div className={styles.noteDetail}>
+      <form className={styles.wrapper} onSubmit={handleSubmit}>
         <input
           type="text"
           value={title}
-          className="note-detail_title_input"
+          className={styles.titleInput}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Secret Note..."
           required
         />
         <textarea
-          className="note-detail_body_input"
+          className={styles.bodyInput}
           rows={10}
           value={body}
           onChange={(e) => setBody(e.target.value)}

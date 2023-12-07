@@ -1,5 +1,5 @@
 import React from "react";
-import "./notes.css";
+import styles from "./notes.module.css";
 import NoteList from "../../components/NoteList";
 import { getActiveNotes } from "../../utils/local-data";
 import { Link, useSearchParams } from "react-router-dom";
@@ -15,13 +15,13 @@ const Notes = () => {
     : activeNotes;
 
   return (
-    <div className="notes-page">
-      <h1 className="notes-page_title">Active Note</h1>
-      <div className="notes-page_wrapper">
+    <div className={styles.notesPage}>
+      <h1 className={styles.title}>Active Note</h1>
+      <div className={styles.wrapper}>
         <SearchBar />
         <NoteList notes={showedNotes} />
       </div>
-      <Link className="new-note_btn" to="/note/new">
+      <Link className={styles.btn} to="/note/new">
         +
       </Link>
     </div>

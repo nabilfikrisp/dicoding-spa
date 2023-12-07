@@ -10,7 +10,7 @@
   width: 100vw;
 }
 
-.nav-list {
+.navList {
   list-style: none;
   display: flex;
   justify-content: space-around;
@@ -24,13 +24,13 @@
   }
 }
 
-.nav-item {
+.navItem {
   margin: 0;
   background-color: inherit;
   height: 100%;
 }
 
-.nav-link {
+.navLink {
   text-decoration: none;
   color: white;
   font-weight: bold;
@@ -42,10 +42,10 @@
   align-items: center;
 }
 
-.nav-link_active {
+.navLinkActive {
   color: #ffd700;
 }
 
-.nav-link:hover {
+.navLink:hover {
   text-decoration: underline;
 }

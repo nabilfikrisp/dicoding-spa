@@ -1,4 +1,4 @@
-.note-list-container {
+.container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -6,7 +6,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.note-list_empty {
+.empty {
   color: white;
   margin: 0 auto;
 }

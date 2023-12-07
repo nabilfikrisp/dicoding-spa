@@ -1,11 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./button.css";
+import styles from "./button.module.css";
+
+const styleVariant = {
+  danger: styles.myBtnDanger,
+  action: styles.myBtnAction,
+  warning: styles.myBtnWarning,
+  success: styles.myBtnSuccess,
+};
 
 const Button = ({ children, onClick, variant = "action", type = "button" }) => {
   return (
     <button
-      className={`my-btn my-btn_${variant}`}
+      className={`${styles.myBtn} ${styleVariant[variant]}`}
       onClick={onClick}
       type={type}
     >

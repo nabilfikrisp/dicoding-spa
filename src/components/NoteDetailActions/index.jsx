@@ -1,5 +1,5 @@
 import React from "react";
-import "./note-detail-actions.css";
+import styles from "./note-detail-actions.module.css";
 import Button from "../Button";
 import PropTypes from "prop-types";
 import { archiveNote, deleteNote, unarchiveNote } from "../../utils/local-data";
@@ -9,7 +9,7 @@ const NoteDetailActions = ({ note, setIsEditing, isEditing, onSaveClick }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="nd-actions">
+    <div className={styles.ndActions}>
       {!isEditing ? (
         <Button
           variant="action"

@@ -1,26 +1,26 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./navbar.css";
+import styles from "./navbar.module.css";
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
-      <ul className="nav-list">
-        <li className="nav-item">
+    <nav className={styles.navbar}>
+      <ul className={styles.navList}>
+        <li className={styles.navItem}>
           <NavLink
             to="/"
             className={({ isActive }) =>
-              ["nav-link", isActive ? "nav-link_active" : ""].join(" ")
+              [styles.navLink, isActive ? styles.navLinkActive : ""].join(" ")
             }
           >
             Active Note
           </NavLink>
         </li>
-        <li className="nav-item">
+        <li className={styles.navItem}>
           <NavLink
             to="/archives"
             className={({ isActive }) =>
-              ["nav-link", isActive ? "nav-link_active" : ""].join(" ")
+              [styles.navLink, isActive ? styles.navLinkActive : ""].join(" ")
             }
           >
             Archived Note

@@ -1,4 +1,4 @@
-.note-item {
+.noteItem {
   flex-grow: 1;
   color: white;
   border: 1px solid white;
@@ -28,18 +28,18 @@
   }
 }
 
-.note-item_title {
+.title {
   color: #ffd700;
 }
 
-.note-item_date {
+.date {
   color: #9ca3af;
   font-weight: 600;
   margin-top: 5px;
   font-size: 14px;
 }
 
-.note-item_body {
+.body {
   margin-top: 16px;
   overflow: hidden;
   display: -webkit-box;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { editNote, getNote } from "../../utils/local-data";
-import "./note-detail.css";
+import styles from "./note-detail.module.css";
 import { showFormattedDate } from "../../utils";
 import NoteDetailActions from "../../components/NoteDetailActions";
 
@@ -17,32 +17,28 @@ const NoteDetail = () => {
   };
 
   return (
-    <div className="note-detail">
+    <div className={styles.noteDetail}>
       {isEditing ? (
-        <form className="note-detail_wrapper">
+        <form className={styles.wrapper}>
           <input
             type="text"
             value={title}
-            className="note-detail_title_edit"
+            className={styles.titleEdit}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <p className="note-detail_date">
-            {showFormattedDate(note.createdAt)}
-          </p>
+          <p className={styles.date}>{showFormattedDate(note.createdAt)}</p>
           <textarea
-            className="note-detail_body_edit"
+            className={styles.bodyEdit}
             rows={10}
             value={body}
             onChange={(e) => setBody(e.target.value)}
           />
         </form>
       ) : (
-        <div className="note-detail_wrapper">
-          <h2 className="note-detail_title">{title}</h2>
-          <p className="note-detail_date">
-            {showFormattedDate(note.createdAt)}
-          </p>
-          <p className="note-detail_body">{body}</p>
+        <div className={styles.wrapper}>
+          <h2 className={styles.title}>{title}</h2>
+          <p className={styles.date}>{showFormattedDate(note.createdAt)}</p>
+          <p className={styles.body}>{body}</p>
         </div>
       )}
 
