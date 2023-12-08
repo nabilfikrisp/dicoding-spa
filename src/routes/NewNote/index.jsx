@@ -6,13 +6,22 @@ import { addNote } from "../../utils/network-data";
 import { useNavigate } from "react-router-dom";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useLangContext } from "../../contexts/LangContext";
+import useInput from "../../hooks/useInput";
 
 const NoteDetail = () => {
   const { lang } = useLangContext();
   const { theme } = useThemeContext();
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const {
+    value: title,
+    onInputChange: onTitleChange,
+    reset: resetTitle,
+  } = useInput();
+  const {
+    value: body,
+    onInputChange: onBodyChange,
+    reset: resetBody,
+  } = useInput();
   const [loading, setLoading] = useState(false);
 
   const text = {
@@ -36,8 +45,8 @@ const NoteDetail = () => {
       if (error) {
         return;
       }
-      setTitle("");
-      setBody("");
+      resetTitle();
+      resetBody();
       navigate("/");
     } catch (error) {
       return;
@@ -53,7 +62,7 @@ const NoteDetail = () => {
           type="text"
           value={title}
           className={styles[`titleInput${theme}`]}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={onTitleChange}
           placeholder={text[lang].titlePlaceholder}
           required
         />
@@ -61,7 +70,7 @@ const NoteDetail = () => {
           className={[styles.bodyInput, styles[theme]].join(" ")}
           rows={10}
           value={body}
-          onChange={(e) => setBody(e.target.value)}
+          onChange={onBodyChange}
           placeholder={text[lang].bodyPlaceholder}
           required
         />

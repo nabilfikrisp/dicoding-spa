@@ -5,12 +5,21 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../Button";
 import { useThemeContext } from "../../../contexts/ThemeContext";
 import { useLangContext } from "../../../contexts/LangContext";
+import useInput from "../../../hooks/useInput";
 
 const LoginForm = () => {
   const { lang } = useLangContext();
   const { theme } = useThemeContext();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    value: email,
+    onInputChange: onEmailChange,
+    reset: resetEmail,
+  } = useInput();
+  const {
+    value: password,
+    onInputChange: onPasswordChange,
+    reset: resetPassword,
+  } = useInput();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -38,8 +47,8 @@ const LoginForm = () => {
         return;
       }
       putAccessToken(data.accessToken);
-      setEmail("");
-      setPassword("");
+      resetEmail();
+      resetPassword();
       navigate("/");
       return;
     } catch (error) {
@@ -58,7 +67,7 @@ const LoginForm = () => {
           type="email"
           name="email"
           id="email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={onEmailChange}
           value={email}
         />
       </div>
@@ -68,7 +77,7 @@ const LoginForm = () => {
           type="password"
           name="password"
           id="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={onPasswordChange}
           value={password}
         />
       </div>

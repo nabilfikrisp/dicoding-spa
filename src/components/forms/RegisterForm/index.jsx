@@ -5,14 +5,31 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../Button";
 import { useThemeContext } from "../../../contexts/ThemeContext";
 import { useLangContext } from "../../../contexts/LangContext";
+import useInput from "../../../hooks/useInput";
 
 const RegisterForm = () => {
   const { lang } = useLangContext();
   const { theme } = useThemeContext();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const {
+    value: name,
+    onInputChange: onNameChange,
+    reset: resetName,
+  } = useInput();
+  const {
+    value: email,
+    onInputChange: onEmailChange,
+    reset: resetEmail,
+  } = useInput();
+  const {
+    value: password,
+    onInputChange: onPasswordChange,
+    reset: resetPassword,
+  } = useInput();
+  const {
+    value: confirmPassword,
+    onInputChange: onConfirmPasswordChange,
+    reset: resetConfirmPassword,
+  } = useInput();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -54,9 +71,10 @@ const RegisterForm = () => {
       if (error) {
         return;
       }
-      setName("");
-      setEmail("");
-      setPassword("");
+      resetName();
+      resetEmail();
+      resetPassword();
+      resetConfirmPassword();
       alert("Register success, you may log in now");
       navigate("/");
       return;
@@ -76,7 +94,7 @@ const RegisterForm = () => {
           type="name"
           name="name"
           id="name"
-          onChange={(e) => setName(e.target.value)}
+          onChange={onNameChange}
           value={name}
         />
       </div>
@@ -86,7 +104,7 @@ const RegisterForm = () => {
           type="email"
           name="email"
           id="email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={onEmailChange}
           value={email}
         />
       </div>
@@ -96,7 +114,7 @@ const RegisterForm = () => {
           type="password"
           name="password"
           id="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={onPasswordChange}
           value={password}
         />
       </div>
@@ -106,7 +124,7 @@ const RegisterForm = () => {
           type="password"
           name="confirmPassword"
           id="confirmPassword"
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={onConfirmPasswordChange}
           value={confirmPassword}
         />
       </div>
