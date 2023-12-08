@@ -7,6 +7,16 @@
 }
 
 .empty {
-  color: white;
+  /* color: white; */
   margin: 0 auto;
+}
+
+.dark {
+  background-color: #1e293b;
+  color: #d1d5db;
+}
+
+.light {
+  background-color: #d1d5db;
+  color: #1e293b;
 }

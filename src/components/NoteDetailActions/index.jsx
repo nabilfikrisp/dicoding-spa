@@ -1,65 +1,112 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./note-detail-actions.module.css";
 import Button from "../Button";
 import PropTypes from "prop-types";
-import { archiveNote, deleteNote, unarchiveNote } from "../../utils/local-data";
+import {
+  archiveNote,
+  deleteNote,
+  unarchiveNote,
+} from "../../utils/network-data";
 import { useNavigate } from "react-router-dom";
+import { useLangContext } from "../../contexts/LangContext";
 
-const NoteDetailActions = ({ note, setIsEditing, isEditing, onSaveClick }) => {
+const NoteDetailActions = ({ note }) => {
+  const { lang } = useLangContext();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const text = {
+    en: {
+      unarchive: "Unarchive",
+      archive: "Archive",
+      delete: "Delete",
+    },
+    id: {
+      unarchive: "Batal Arsip",
+      archive: "Arsip",
+      delete: "Hapus",
+    },
+  };
 
   return (
     <div className={styles.ndActions}>
-      {!isEditing ? (
-        <Button
-          variant="action"
-          onClick={() => {
-            setIsEditing(!isEditing);
-          }}
-        >
-          Edit
-        </Button>
-      ) : (
-        <Button
-          variant="success"
-          onClick={() => {
-            onSaveClick();
-            setIsEditing(!isEditing);
-          }}
-        >
-          Save
-        </Button>
-      )}
-
       {note.archived ? (
         <Button
           onClick={() => {
-            unarchiveNote(note.id);
-            navigate("/");
+            const requestUnarchive = async () => {
+              try {
+                setLoading(true);
+                const { error } = await unarchiveNote(note.id);
+                if (error) {
+                  return;
+                }
+              } catch (error) {
+                return;
+              } finally {
+                setLoading(true);
+
+                // force rerender using random state
+                navigate("/", { state: Date.now().toString() });
+              }
+            };
+            requestUnarchive();
           }}
+          isLoading={loading}
           variant="warning"
         >
-          Unarchive
+          {text[lang].unarchive}
         </Button>
       ) : (
         <Button
           onClick={() => {
-            archiveNote(note.id);
-            navigate("/");
+            const requestUnarchive = async () => {
+              try {
+                setLoading(true);
+                const { error } = await archiveNote(note.id);
+                if (error) {
+                  return;
+                }
+              } catch (error) {
+                return;
+              } finally {
+                setLoading(true);
+
+                // force rerender using random state
+                navigate("/", { state: Date.now().toString() });
+              }
+            };
+            requestUnarchive();
           }}
+          isLoading={loading}
         >
-          Archive
+          {text[lang].archive}
         </Button>
       )}
 
       <Button
         variant="danger"
         onClick={() => {
-          deleteNote(note.id);
-          navigate("/");
+          const requestUnarchive = async () => {
+            try {
+              setLoading(true);
+              const { error } = await deleteNote(note.id);
+              if (error) {
+                return;
+              }
+            } catch (error) {
+              return;
+            } finally {
+              setLoading(true);
+
+              // force rerender using random state
+              navigate("/", { state: Date.now().toString() });
+            }
+          };
+          requestUnarchive();
         }}
+        isLoading={loading}
       >
-        Delete
+        {text[lang].delete}
       </Button>
     </div>
   );
@@ -73,9 +120,6 @@ NoteDetailActions.propTypes = {
     createdAt: PropTypes.string.isRequired,
     archived: PropTypes.bool.isRequired,
   }).isRequired,
-  setIsEditing: PropTypes.func,
-  isEditing: PropTypes.bool,
-  onSaveClick: PropTypes.func,
 };
 
 export default NoteDetailActions;

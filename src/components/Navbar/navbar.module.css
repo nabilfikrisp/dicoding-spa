@@ -1,6 +1,6 @@
 .navbar {
-  background-color: #1e293b;
-  padding: 10px;
+  /* background-color: #1e293b; */
+  padding: 10px 50px;
   height: 50px;
   @media (max-width: 576px) {
     height: 100px;
@@ -8,6 +8,18 @@
   }
   position: fixed;
   width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dark {
+  background-color: #1e293b;
+  color: #d1d5db;
+}
+
+.light {
+  background-color: #d1d5db;
+  color: #1e293b;
 }
 
 .navList {
@@ -22,6 +34,7 @@
     flex-direction: column;
     gap: 10px;
   }
+  gap: 20px;
 }
 
 .navItem {
@@ -32,7 +45,7 @@
 
 .navLink {
   text-decoration: none;
-  color: white;
+  /* color: #d1d5db; */
   font-weight: bold;
   transition: all 0.3s ease-in-out;
   background-color: inherit;
@@ -42,10 +55,44 @@
   align-items: center;
 }
 
-.navLinkActive {
+.navLinkActivedark {
   color: #ffd700;
+}
+
+.navLinkActivelight {
+  color: #b31312;
 }
 
 .navLink:hover {
   text-decoration: underline;
+}
+
+.appActions {
+  display: flex;
+  gap: 20px;
+  background-color: inherit;
+}
+
+.actionsItem {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+  /* color: #d1d5db; */
+}
+
+.userName {
+  font-weight: 600;
+}
+
+.actionsItem > * {
+  background-color: inherit;
+  /* color: #d1d5db; */
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: translateX(5px);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
 }

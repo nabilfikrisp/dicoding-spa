@@ -9,10 +9,6 @@
   gap: 20px;
 }
 
-.title {
-  color: #ffd700;
-}
-
 .wrapper {
   width: 100%;
   max-width: 1000px;
@@ -23,21 +19,60 @@
   gap: 20px;
 }
 
-.btn {
+.titledark {
+  color: #ffd700;
+}
+
+.titlelight {
+  color: #b31312;
+}
+
+.dark {
+  background-color: #334155;
+  color: #d1d5db;
+}
+
+.light {
+  background-color: white;
+  color: #1e293b;
+}
+
+.btndark {
   width: 50px;
   height: 50px;
   position: absolute;
   bottom: 50px;
   right: 50px;
-  background-color: white;
+  background-color: #1e293b;
+  color: #d1d5db;
   border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   font-size: 32px;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
-.btn:hover {
-  opacity: 0.7;
+.btnlight {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  background-color: #d1d5db;
+  color: #1e293b;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 32px;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }

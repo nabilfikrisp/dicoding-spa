@@ -1,56 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { editNote, getNote } from "../../utils/local-data";
 import styles from "./note-detail.module.css";
 import { showFormattedDate } from "../../utils";
 import NoteDetailActions from "../../components/NoteDetailActions";
+import { getNote } from "../../utils/network-data";
+import LoadingState from "../../components/LoadingState";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 const NoteDetail = () => {
+  const { theme } = useThemeContext();
   const { id } = useParams();
-  const note = getNote(id);
-  const [isEditing, setIsEditing] = useState(false);
-  const [title, setTitle] = useState(note.title);
-  const [body, setBody] = useState(note.body);
+  const [note, setNote] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [title, setTitle] = useState(null);
+  const [body, setBody] = useState(null);
 
-  const onSaveClick = () => {
-    editNote({ id, title, body });
-  };
+  useEffect(() => {
+    const fetchNote = async () => {
+      try {
+        const { error, data } = await getNote(id);
+        if (error) {
+          setError(false);
+          return;
+        }
+        setNote(data);
+        setTitle(data.title);
+        setBody(data.body);
+        setError(error);
+      } catch (error) {
+        return;
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNote();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (loading) {
+    return <LoadingState />;
+  }
+
+  if (error) {
+    return <div>error fetching data, please refresh</div>;
+  }
 
   return (
-    <div className={styles.noteDetail}>
-      {isEditing ? (
-        <form className={styles.wrapper}>
-          <input
-            type="text"
-            value={title}
-            className={styles.titleEdit}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <p className={styles.date}>{showFormattedDate(note.createdAt)}</p>
-          <textarea
-            className={styles.bodyEdit}
-            rows={10}
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
-          />
-        </form>
-      ) : (
-        <div className={styles.wrapper}>
-          <h2 className={styles.title}>{title}</h2>
-          <p className={styles.date}>{showFormattedDate(note.createdAt)}</p>
-          <p className={styles.body}>{body}</p>
+    <>
+      {note && (
+        <div className={[styles.noteDetail, styles[theme]].join(" ")}>
+          <div className={styles.wrapper}>
+            <h2 className={styles[`title${theme}`]}>{title}</h2>
+            <p className={[styles.date, styles[theme]].join(" ")}>
+              {showFormattedDate(note.createdAt)}
+            </p>
+            <p className={[styles.body, styles[theme]].join(" ")}>{body}</p>
+          </div>
+
+          <NoteDetailActions note={note} />
         </div>
       )}
-
-      <NoteDetailActions
-        note={note}
-        setIsEditing={setIsEditing}
-        isEditing={isEditing}
-        onSaveClick={() => {
-          onSaveClick();
-        }}
-      />
-    </div>
+    </>
   );
 };
 

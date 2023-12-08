@@ -1,0 +1,25 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.dark {
+  background-color: #334155;
+  color: #d1d5db;
+}
+
+.light {
+  background-color: white;
+  color: #1e293b;
+}

@@ -6,24 +6,30 @@
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  transition: all 0.3 ease-in-out;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
   border: none;
 
   &:hover {
     opacity: 0.7;
-    transition: all 0.3 ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   &:active {
     transform: scale(0.98);
     box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
-    transition: all 0.3 ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 }
 
-.myBtnAction {
+.myBtnActiondark {
   background-color: white;
+  color: #1e293b;
+}
+
+.myBtnActionlight {
+  background-color: #1e293b;
+  color: white;
 }
 
 .myBtnDanger {
@@ -33,9 +39,12 @@
 
 .myBtnWarning {
   background-color: #ffd700;
-  color: white;
 }
 
 .myBtnSuccess {
   background-color: #03dac6;
+}
+
+.isLoading {
+  opacity: 0.7;
 }
